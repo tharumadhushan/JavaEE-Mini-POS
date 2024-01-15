@@ -1,17 +1,21 @@
 package com.example.mini_pos.db;
 
 import com.example.mini_pos.dto.CustomerDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerDBProcess {
     private static final String SAVE_DATA = "INSERT INTO customer (customer_id, name, address, contact) VALUES (?, ?, ?, ?)";
     private static final String UPDATE_DATA = "UPDATE customer SET name=?, address=?, contact=? WHERE customer_id=?";
     private static final String DELETE_DATA = "DELETE FROM customer WHERE customer_id = ?";
+    private static final String SELECT_ALL_CUSTOMERS = "SELECT * FROM customer";
+    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE customer_id = ?";
     private static final Logger logger = LoggerFactory.getLogger(CustomerDBProcess.class);
 
     public void saveCustomer(CustomerDTO customer, Connection connection) {
@@ -75,5 +79,50 @@ public class CustomerDBProcess {
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting customer data", e);
         }
+    }
+
+    public List<CustomerDTO> getAllCustomers(Connection connection) {
+        List<CustomerDTO> customers = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(SELECT_ALL_CUSTOMERS);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CustomerDTO customer = new CustomerDTO(
+                        rs.getString("customer_id"),
+                        rs.getString("name"),
+                        rs.getString("address"),
+                        rs.getString("contact")
+                );
+                customers.add(customer);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all customers", e);
+        }
+
+        return customers;
+    }
+
+    public static CustomerDTO getCustomerById(String customerId, Connection connection) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(GET_CUSTOMER_BY_ID);
+            ps.setString(1, customerId);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new CustomerDTO(
+                        rs.getString("customer_id"),
+                        rs.getString("name"),
+                        rs.getString("address"),
+                        rs.getString("contact")
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving customer by ID", e);
+        }
+
+        return null;
     }
 }

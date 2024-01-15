@@ -17,7 +17,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet(name = "customer",urlPatterns = "/customer",
@@ -94,5 +97,54 @@ public class Customer extends HttpServlet {
         var dbProcess = new CustomerDBProcess();
         dbProcess.deleteCustomer(customerId, connection);
         resp.getWriter().write("Customer deleted successfully.");
+    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaee","root","1234");
+            ResultSet rst = connection.prepareStatement("select * from customer").executeQuery();
+            String allRecords = "";
+            while (rst.next()){
+                int customer_id = rst.getInt(1);
+                String name = rst.getString(2);
+                String address = rst.getString(3);
+                String contact = rst.getString(4);
+                System.out.println(customer_id + " " + name + " " + address + " " + contact);
+
+//                String customer = "{\"customer_id\":\""+customer_id+",\"name\":\""+name+"\",\"address\":\""+address+"\",\"contact\":\""+contact+"}";
+                String customer="{\"customer_id\":"+customer_id+",\"name\":\""+name+"\",\"address\":\""+address+"\",\"contact\":\""+contact+"\"},";
+                allRecords = allRecords+customer;
+            }
+            String finalJson = "[" + allRecords.substring(0,allRecords.length()-1) + "]";
+            PrintWriter writer = resp.getWriter();
+            writer.write(finalJson);
+            resp.setContentType("application/json");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //        String customerId = req.getParameter("customer_id");
+//
+//        if (customerId == null || customerId.isEmpty()) {
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing customer_id parameter");
+//            return;
+//        }
+//
+//        try {
+//            CustomerDTO customerDTO = CustomerDBProcess.getCustomerById(customerId, connection);
+//
+//            if (customerDTO != null) {
+//                Jsonb jsonb = JsonbBuilder.create();
+//                resp.getWriter().write(jsonb.toJson(customerDTO));
+//            } else {
+//                resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Customer not found");
+//            }
+//        } catch (Exception e) {
+//            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing request");
+//        }
+
     }
 }

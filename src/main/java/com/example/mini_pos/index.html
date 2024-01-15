@@ -136,6 +136,7 @@
                     <button id="update_customer" type="button" class="btn btn-outline-warning">Update</button>
                     <button id="delete_customer" type="button" class="btn btn-outline-danger">Delete</button>
                     <button id="customer_reset" type="reset" class="btn btn-outline-secondary">Reset</button>
+                    <button id="search_customer" type="button" class="btn btn-outline-secondary">Search</button>
                 </div>
 
 
@@ -155,10 +156,15 @@
                 <th scope="col">Name</th>
                 <th scope="col">Address</th>
                 <th scope="col">Contact</th>
-
             </tr>
             </thead>
             <tbody id="customer-tbl-body">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
 
@@ -348,8 +354,8 @@
 
 <!--Link Controllers-->
 <script type="module" src="controller/MenuController.js"></script>
-<script type="module" src="controller/customer_page_controller.js"></script>
-<script type="module" src="controller/item_page_controller.js"></script>
+<!--<script type="module" src="controller/customer_page_controller.js"></script>-->
+<!--<script type="module" src="controller/item_page_controller.js"></script>-->
 <script type="module" src="controller/order_page_controller.js"></script>
 <script type="module" src="controller/recent_order_page_controller.js"></script>
 <script src="javaScript/Customer.js"></script>
