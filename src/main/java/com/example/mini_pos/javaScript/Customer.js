@@ -1,4 +1,7 @@
 $(document).ready(function (){
+    $("#customer-nav").click(function () {
+        loadAllCustomer();
+    });
     $("#save_customer").click(function (){
         let customer_idF = $("#cust_id").val();
         let nameF = $("#name").val();
@@ -18,6 +21,7 @@ $(document).ready(function (){
 
             }),
             success: function (data) {
+                reset();
                 alert("saved")
 
             },
@@ -50,6 +54,7 @@ $("#update_customer").click(function (){
 
         }),
         success: function (data) {
+            reset()
             alert("saved")
         },
         error: function (xhr, exception) {
@@ -69,6 +74,7 @@ $("#delete_customer").click(function () {
         url: "http://localhost:8081/mini_pos_war_exploded/customer?customer_id=" + customer_idF,
         async: true,
         success: function (data) {
+            reset()
             alert("Customer deleted successfully");
         },
         error: function (xhr, exception) {
@@ -77,55 +83,32 @@ $("#delete_customer").click(function () {
     });
 });
 
+
 $("#customer_reset").click(function () {
+    reset();
+});
+const reset = () => {
     $("#cust_id").val("");
     $("#name").val("");
     $("#address").val("");
     $("#contact").val("");
-});
+    loadAllCustomer();
+}
 
-
-// $("#search_customer").click(function () {
-//     let customer_idF = $("#cust_id").val();
-//
-//     $.ajax({
-//         method: "GET",
-//         contentType: "application/json",
-//         url: "http://localhost:8081/mini_pos_war_exploded/customer?customer_id=" + customer_idF,
-//         async: true,
-//         success: function (data) {
-//             // Assuming data contains the customer details
-//             if (data && data.customer_id) {
-//                 console.log("Customer details:", data);
-//
-//                 // Assuming you have elements with IDs name, address, and contact
-//                 $("#name").val(data.name);
-//                 $("#address").val(data.address);
-//                 $("#contact").val(data.contact);
-//             } else {
-//                 alert("Invalid or empty response from the server");
-//             }
-//         },
-//         error: function (xhr, exception) {
-//             // Handle errors
-//             alert("Error getting customer details");
-//         }
-//     });
-// });
-
-$("#search_customer").click(function (){
+const loadAllCustomer = () => {
     $("#customer-tbl-body").empty();
     $.ajax({
         url: "http://localhost:8081/mini_pos_war_exploded/customer",
-        method:"GET",
-        dataType:"json",
+        method: "GET",
+        dataType: "json",
         success: function (resp) {
             console.log(resp);
             for (const customer of resp) {
-                let row = `<tr><td>${customer.customer_id}</td><td>${customer.name}</td><td>${customer.address}</td><td>${customer.contact}</td></tr>`;
+                let row = `<tr><td>${customer.customer_id}</td><td>${customer.name}</td><td>${customer.address}</td><td>${customer.contact}</td></tr>;`
                 $("#customer-tbl-body").append(row);
             }
         }
     });
-});
+}
+
 

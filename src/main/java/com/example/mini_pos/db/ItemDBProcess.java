@@ -7,8 +7,10 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemDBProcess {
     Connection connection;
@@ -16,6 +18,7 @@ public class ItemDBProcess {
     private static final String SAVE_ITEM_DATA = "INSERT INTO item(code,descr,qty,unitPrice) VALUES (?,?,?,?)";
     private static final String UPDATE_DATA = "UPDATE item SET descr=?, qty=?, unitPrice=? WHERE code=?";
     private static final String DELETE_DATA = "DELETE FROM item WHERE code = ?";
+    private static final String SELECT_ALL_ITEMS = "SELECT * FROM item";
 
     final  static Logger logger = LoggerFactory.getLogger(CustomerDBProcess.class);
 
@@ -81,6 +84,28 @@ public class ItemDBProcess {
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting Item data", e);
         }
+    }
+    public List<ItemDTO> getAllItem(Connection connection) {
+        List<ItemDTO> items = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(SELECT_ALL_ITEMS);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ItemDTO item = new ItemDTO(
+                        rs.getString("code"),
+                        rs.getString("descr"),
+                        rs.getInt("qty"),
+                        rs.getDouble("unitPrice")
+                );
+                items.add(item);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all items", e);
+        }
+
+        return items;
     }
 }
 

@@ -1,8 +1,11 @@
 $(document).ready(function () {
+    $("#nav-item").click(function () {
+        loadAllItem();
+    });
     $("#save_item").click(function () {
         console.log("sss")
         let codeF = $("#item_id").val();
-        let descriptionF = $("#desc").val();
+        let descriptionF = $("#descr").val();
         let qtyF = $("#qty").val();
         let unitPriceF = $("#price").val();
         $.ajax({
@@ -17,6 +20,7 @@ $(document).ready(function () {
                 unitPrice: unitPriceF
             }),
             success: function (data) {
+                reset()
                 alert("saved")
             },
             error: function (xhr, exception) {
@@ -24,11 +28,10 @@ $(document).ready(function () {
             }
         })
     })
-});
 
 $("#update_item").click(function (){
     let codeF = $("#item_id").val();
-    let descrF = $("#desc").val();
+    let descrF = $("#descr").val();
     let qtyF = $("#qty").val();
     let unitPriceF = $("#price").val();
 
@@ -45,6 +48,7 @@ $("#update_item").click(function (){
 
         }),
         success: function (data) {
+            reset()
             alert("saved")
         },
         error: function (xhr, exception) {
@@ -64,6 +68,7 @@ $("#delete_item").click(function () {
         url: "http://localhost:8081/mini_pos_war_exploded/item?code=" + item_idF,
         async: true,
         success: function (data) {
+            reset()
             alert("Item deleted successfully");
         },
         error: function (xhr, exception) {
@@ -72,11 +77,33 @@ $("#delete_item").click(function () {
     });
 });
 
-$("#item_reset").click(function () {
-    $("#item_id").val("");
-    $("#desc").val("");
-    $("#qty").val("");
-    $("#unit_price").val("");
-});
 
+        $("#item_reset").click(function () {
+            reset();
+        });
+        const reset = () => {
+            $("#item_id").val("");
+            $("#desc").val("");
+            $("#qty").val("");
+            $("#price").val("");
+            loadAllItem();
+        }
+
+
+        const loadAllItem = () => {
+            $("#item-tbl-body").empty();
+            $.ajax({
+                url: "http://localhost:8081/mini_pos_war_exploded/item",
+                method: "GET",
+                dataType: "json",
+                success: function (resp) {
+                    console.log(resp);
+                    for (const item of resp) {
+                        let row = `<tr><td>${item.code}</td><td>${item.description}</td><td>${item.qty}</td><td>${item.unitPrice}</td></tr>;`
+                        $("#item-tbl-body").append(row);
+                    }
+                }
+            });
+        }
+});
 

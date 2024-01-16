@@ -37,15 +37,15 @@
                 </li>
                 <li class="nav-item">
                     <img src="assets/img/people_24px.png" alt="customericon">
-                    <a class="nav-link active customer-nav" href="#">Customer</a>
+                    <a class="nav-link active customer-nav" id="customer-nav" href="#">Customer</a>
                 </li>
                 <li class="nav-item">
                     <img src="assets/img/open_delivered_box_50px.png" alt="itemicon">
-                    <a class="nav-link active item-nav" href="#">Item</a>
+                    <a class="nav-link active item-nav" id="nav-item" href="#">Item</a>
                 </li>
                 <li class="nav-item">
                     <img src="assets/img/buy_24px.png" alt="ordericon">
-                    <a class="nav-link active order-nav" href="#">Order</a>
+                    <a class="nav-link active order-nav" id="order-nav" href="#">Order</a>
                 </li>
                 <li class="nav-item">
                     <img src="assets/img/buy_24px.png" alt="ordericon">
@@ -220,18 +220,22 @@
     <section>
         <div></div>
         <table class="table">
-
             <thead>
             <tr>
                 <th scope="col">Item_ID</th>
                 <th scope="col">Desc</th>
+                <th scope="col">Qty</th>
                 <th scope="col">Price</th>
-                <th scope="col">Qty.</th>
 
             </tr>
             </thead>
             <tbody id="item-tbl-body">
-
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
 
@@ -273,23 +277,23 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="unit_price" class="form-label">Unit_Price </label>
-                    <input type="text" class="form-control" id="unit_price"
+                    <label for="unit_price" class="form-label">Unit Price </label>
+                    <input type="number" class="form-control" id="unit_price"
                            aria-describedby="emailHelp" readonly>
                 </div>
 
                 <section id="order_details" class="row g-3">
                     <div class="col-auto">
                         <label for="qty_on_hand" class="form-label">Qty. on hand </label>
-                        <input type="text" class="form-control" id="qty_on_hand"
-                               aria-describedby="emailHelp" readonly>
+                        <input type="number" class="form-control" id="qty_on_hand"
+                               aria-describedby="emailHelp">
                     </div>
 
 
                     <div class="col-auto">
                         <label for="order_qty" class="form-label">Qty.</label>
-                        <input type="text" class="form-control" id="order_qty"
-                               aria-describedby="emailHelp">
+                        <input type="number" class="form-control" id="order_qty"
+                               aria-describedby="emailHelp" readonly>
                     </div>
                 </section>
 
@@ -311,6 +315,7 @@
             </tr>
             </thead>
             <tbody id="order_table_body">
+
 
             </tbody>
         </table>
@@ -356,10 +361,11 @@
 <script type="module" src="controller/MenuController.js"></script>
 <!--<script type="module" src="controller/customer_page_controller.js"></script>-->
 <!--<script type="module" src="controller/item_page_controller.js"></script>-->
-<script type="module" src="controller/order_page_controller.js"></script>
+<!--<script type="module" src="controller/order_page_controller.js"></script>-->
 <script type="module" src="controller/recent_order_page_controller.js"></script>
 <script src="javaScript/Customer.js"></script>
 <script src="javaScript/Item.js"></script>
+<script src="javaScript/order.js"></script>
 
 
 <!-- alert type -->

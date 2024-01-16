@@ -106,24 +106,21 @@ public class Customer extends HttpServlet {
             ResultSet rst = connection.prepareStatement("select * from customer").executeQuery();
             String allRecords = "";
             while (rst.next()){
+
                 int customer_id = rst.getInt(1);
                 String name = rst.getString(2);
                 String address = rst.getString(3);
                 String contact = rst.getString(4);
-                System.out.println(customer_id + " " + name + " " + address + " " + contact);
 
-//                String customer = "{\"customer_id\":\""+customer_id+",\"name\":\""+name+"\",\"address\":\""+address+"\",\"contact\":\""+contact+"}";
                 String customer="{\"customer_id\":"+customer_id+",\"name\":\""+name+"\",\"address\":\""+address+"\",\"contact\":\""+contact+"\"},";
-                allRecords = allRecords+customer;
+                allRecords = allRecords + customer;
             }
             String finalJson = "[" + allRecords.substring(0,allRecords.length()-1) + "]";
             PrintWriter writer = resp.getWriter();
             writer.write(finalJson);
             resp.setContentType("application/json");
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         //        String customerId = req.getParameter("customer_id");
