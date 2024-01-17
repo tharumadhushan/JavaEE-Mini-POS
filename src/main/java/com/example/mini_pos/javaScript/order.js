@@ -68,3 +68,14 @@ $('#order_item_id').change((e) => {
 })
 loadAllItemCode();
 loadAllCustomerCode();
+$("#add_cart").click(function () {
+    updateTotal();
+});
+$("#unit_price, #qty_on_hand").on("input", updateTotal);
+
+function updateTotal() {
+    const unitPrice = parseFloat($("#unit_price").val()) || 0;
+    const quantity = parseInt($("#qty_on_hand").val()) || 0;
+    const total = (unitPrice * quantity).toFixed(2);
+    $("#final_total").val(total);
+}

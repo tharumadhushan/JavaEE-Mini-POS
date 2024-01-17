@@ -107,8 +107,22 @@ const loadAllCustomer = () => {
                 let row = `<tr><td>${customer.customer_id}</td><td>${customer.name}</td><td>${customer.address}</td><td>${customer.contact}</td></tr>;`
                 $("#customer-tbl-body").append(row);
             }
+            callMethod()
         }
     });
+}
+function callMethod(){
+    $("#customer-tbl-body>tr").click(function (){
+        let customer_id =$(this).children().eq(0).text();
+        let name =$(this).children().eq(1).text();
+        let address =$(this).children().eq(2).text();
+        let contact =$(this).children().eq(3).text();
+
+        $("#cust_id").val(customer_id);
+        $("#name").val(name);
+        $("#address").val(address);
+        $("#contact").val(contact);
+    })
 }
 
 

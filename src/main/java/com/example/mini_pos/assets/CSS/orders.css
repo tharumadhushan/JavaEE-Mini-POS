@@ -49,7 +49,6 @@
     left: 40px;
     right: 0;
     top: 0;
-    background-image: url("../img/logo.png");
     background-repeat: no-repeat;
     opacity: 0.2;
 
@@ -90,14 +89,36 @@
 }
 
 #order_details > div > input {
-    width: 150px;
+    width: 125px;
 }
-
-#order_form > form > button {
+#order_details{
+    width: fit-content;
+    top: 400px;
+    margin: 0;
+}
+#add_cart {
     position: relative;
-    bottom: 40px;
-    left:250px;
-    margin-left: 2px;
+    bottom: 5px;
+    left:310px;
+    color: black;
+    border-color: black;
+    background-color: orange;
+}
+#add_cart:hover{
+    background-color: #ffc107;
+    border-color: black;
+    font-weight: bold;
+}
+#remove {
+    position: relative;
+    bottom: -40px;
+    left:222px;
+    background-color: red;
+    color: white;
+    border-color: black;
+}
+#remove:hover{
+    font-weight: bold;
 }
 
 .order > section:nth-child(2) > table {
@@ -131,8 +152,16 @@
 
 .order > section:nth-child(2) > section > button {
     width: 200px;
-    height: calc(1.5em + 0.75rem + 2px);;
-
+    height: calc(1.5em + 0.75rem + 2px);
+    position: relative;
+    top: -14px;
+    border-color: black;
+    color: black;
+    background-color: limegreen;
+}
+.order > section:nth-child(2) > section > button:hover{
+    background-color: lime;
+    font-weight: bold;
 }
 
 #order_form>form>div:nth-child(3){
