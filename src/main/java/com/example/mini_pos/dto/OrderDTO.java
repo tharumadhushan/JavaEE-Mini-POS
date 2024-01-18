@@ -16,7 +16,5 @@ public class OrderDTO implements Serializable {
     private String customer_name;
     private String order_item_id;
     private String description;
-    private double unit_price;
-    private int qtyOnHand;
     private double total;
 }

@@ -49,14 +49,3 @@ $('.orderDetail-nav').on('click', () => {
     $('#order').css('display', 'none');
     $('#place_order').css('display', 'block');
 })
-let clicked = false;
-
-$('.dropdown-toggle').on('click', () => {
-    if (!clicked) {
-        $('.dropdown-menu').addClass('show');
-        clicked = true;
-    } else {
-        $('.dropdown-menu').removeClass('show');
-        clicked = false;
-    }
-});

@@ -123,25 +123,6 @@ public class Customer extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        //        String customerId = req.getParameter("customer_id");
-//
-//        if (customerId == null || customerId.isEmpty()) {
-//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing customer_id parameter");
-//            return;
-//        }
-//
-//        try {
-//            CustomerDTO customerDTO = CustomerDBProcess.getCustomerById(customerId, connection);
-//
-//            if (customerDTO != null) {
-//                Jsonb jsonb = JsonbBuilder.create();
-//                resp.getWriter().write(jsonb.toJson(customerDTO));
-//            } else {
-//                resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Customer not found");
-//            }
-//        } catch (Exception e) {
-//            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing request");
-//        }
 
     }
 }

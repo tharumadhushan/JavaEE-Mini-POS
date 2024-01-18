@@ -316,10 +316,10 @@
             </thead>
             <tbody id="order_table_body">
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td id="item_tbl_id"></td>
+                    <td id="item_tbl_desc"></td>
+                    <td id="item_tbl_qty"></td>
+                    <td id="item_tbl_total"></td>
                 </tr>
 
             </tbody>
@@ -331,7 +331,7 @@
             <div class="col-auto">
                 <label for="final_total" class="form-label">Total</label>
                 <input id="final_total" type="text" class="form-control" id="final_total"
-                       aria-describedby="emailHelp">
+                       aria-describedby="emailHelp" readonly>
             </div>
             <button id="place_ord" type="button" class="btn btn-outline-success">Place Order</button>
         </section>
