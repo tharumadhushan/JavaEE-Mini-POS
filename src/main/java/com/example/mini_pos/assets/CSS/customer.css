@@ -89,8 +89,31 @@
     left: 40px;
     right: 0;
     top: 0;
-    background-image: url("../img/logo.png");
     background-repeat: no-repeat;
     opacity: 0.2;
+
+}
+#save_customer{
+    background-color: green;
+    color: white;
+    border-color: green;
+}
+#update_customer{
+    background-color: darkgoldenrod;
+    color: white;
+    border-color: darkgoldenrod;
+}
+#delete_customer{
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+#customer_reset{
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+#customer_buttons>div>button:hover{
+    font-weight: bold;
 
 }

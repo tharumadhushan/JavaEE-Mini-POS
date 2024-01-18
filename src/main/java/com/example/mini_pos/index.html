@@ -49,7 +49,7 @@
                 </li>
                 <li class="nav-item">
                     <img src="assets/img/buy_24px.png" alt="ordericon">
-                    <a class="nav-link active orderDetail-nav" href="#">CheckOut+</a>
+                    <a class="nav-link active orderDetail-nav" id="detail_nav" href="#">CheckOut+</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true"></a>
@@ -110,22 +110,22 @@
             <section id="customer_details">
                 <div class="mb-3">
                     <label for="cust_id" class="form-label">Customer ID</label>
-                    <input id="cust_id" type="text" class="form-control">
+                    <input id="cust_id" type="text" class="form-control" placeholder="Enter Customer Id..">
                 </div>
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input id="name" type="text" class="form-control"
-                           aria-describedby="emailHelp">
+                           aria-describedby="emailHelp" placeholder="Enter Name..">
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">Address</label>
-                    <input id="address" type="text" class="form-control"  aria-describedby="emailHelp">
+                    <input id="address" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Address ..">
                 </div>
 
                 <div class="mb-3">
                     <label for="contact" class="form-label">Contact</label>
-                    <input id="contact" type="text" class="form-control" aria-describedby="emailHelp">
+                    <input id="contact" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Contact..">
                 </div>
 
             </section>
@@ -136,7 +136,6 @@
                     <button id="update_customer" type="button" class="btn btn-outline-warning">Update</button>
                     <button id="delete_customer" type="button" class="btn btn-outline-danger">Delete</button>
                     <button id="customer_reset" type="reset" class="btn btn-outline-secondary">Reset</button>
-                    <button id="search_customer" type="button" class="btn btn-outline-secondary">Search</button>
                 </div>
 
 
@@ -183,21 +182,21 @@
             <section id="item_details">
                 <div class="mb-3">
                     <label for="item_id" class="form-label">Item ID</label>
-                    <input id="item_id" type="text" class="form-control" aria-describedby="emailHelp">
+                    <input id="item_id" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Item Id..">
                 </div>
 
                 <div class="mb-3">
                     <label for="desc" class="form-label">Description</label>
-                    <input id="desc" type="text" class="form-control" aria-describedby="emailHelp">
+                    <input id="desc" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Description..">
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
-                    <input id="price" type="text" class="form-control"  aria-describedby="emailHelp">
+                    <input id="price" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Unit Price..">
                 </div>
 
                 <div class="mb-3">
                     <label for="qty" class="form-label">Qty.</label>
-                    <input id="qty" type="text" class="form-control" aria-describedby="emailHelp">
+                    <input id="qty" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter qty..">
                 </div>
 
             </section>
@@ -250,7 +249,7 @@
                 <div class="mb-3">
                     <label for="order_id" class="form-label">Order ID</label>
                     <input type="text" class="form-control" id="order_id"
-                           aria-describedby="emailHelp">
+                           aria-describedby="emailHelp" placeholder="Enter Order Id..">
                 </div>
 
                 <div class="form-group">
@@ -293,7 +292,7 @@
                     <div class="col-auto">
                         <label for="order_qty" class="form-label">Qty.</label>
                         <input type="number" class="form-control" id="order_qty"
-                               aria-describedby="emailHelp">
+                               aria-describedby="emailHelp"placeholder="Qty">
                     </div>
                 </section>
 
@@ -342,17 +341,32 @@
 </section>
 
 <section id="place_order" class="order_details">
-    <section class="order_details_cards" style="display: flex; flex-wrap: wrap; justify-content: center; position: relative; top: 100px;">
-        <div class="card border-primary mb-3">
-            <div class="card-header">Order Details</div>
-            <div class="card-body text-primary">
-                <h5 class="card-title">Order ID: O001</h5>
-                <p class="card-text">Order Date: October 26, 2023</p>
-                <p class="card-text">Customer ID: C001</p>
-                <p class="card-text">Items: Item 1, Item 2, Item 3</p>
-                <p class="card-text">Total: $500.00</p>
-            </div>
-        </div>
+    <section>
+        <div></div>
+        <table class="table">
+
+            <thead>
+            <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Customer ID</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Item ID</th>
+                <th scope="col">Description</th>
+                <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody id="place-tbl-body">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+
     </section>
 </section>
 
@@ -367,7 +381,7 @@
 <!--<script type="module" src="controller/customer_page_controller.js"></script>-->
 <!--<script type="module" src="controller/item_page_controller.js"></script>-->
 <!--<script type="module" src="controller/order_page_controller.js"></script>-->
-<script type="module" src="controller/recent_order_page_controller.js"></script>
+<!--<script type="module" src="controller/recent_order_page_controller.js"></script>-->
 <script src="javaScript/Customer.js"></script>
 <script src="javaScript/Item.js"></script>
 <script src="javaScript/order.js"></script>

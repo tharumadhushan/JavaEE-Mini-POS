@@ -79,7 +79,6 @@
     left: 40px;
     right: 0;
     top: 0;
-    background-image: url("../img/logo.png");
     background-repeat: no-repeat;
     opacity: 0.2;
 
@@ -94,5 +93,29 @@
     right: 0;
     top: 20px;
     margin: auto;
+
+}
+#save_item{
+    background-color: green;
+    color: white;
+    border-color: green;
+}
+#update_item{
+    background-color: darkgoldenrod;
+    color: white;
+    border-color: darkgoldenrod;
+}
+#delete_item{
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+#item_reset{
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+#item_buttons>div>button:hover{
+    font-weight: bolder;
 
 }
