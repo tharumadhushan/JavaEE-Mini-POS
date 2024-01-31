@@ -179,7 +179,7 @@ function callMethod() {
         $("#order_item_id").val(item_id);
         $("#description").val(desc);
         $("#order_qty").val(qty);
-        $("#final_total").val(total);
+        $("#unit_price").val(total/qty);
 
     });
 }

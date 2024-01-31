@@ -30,10 +30,10 @@ $(document).ready(function (){
             }
 
         })
-        loadCustomerData();
+        loadAllCustomer();
 
     });
-});
+
 
 $("#update_customer").click(function (){
     let customer_idF = $("#cust_id").val();
@@ -107,7 +107,7 @@ const loadAllCustomer = () => {
                 let row = `<tr><td>${customer.customer_id}</td><td>${customer.name}</td><td>${customer.address}</td><td>${customer.contact}</td></tr>;`
                 $("#customer-tbl-body").append(row);
             }
-            callMethod()
+            callMethod();
         }
     });
 }
@@ -124,5 +124,5 @@ function callMethod(){
         $("#contact").val(contact);
     })
 }
-
+});
 
