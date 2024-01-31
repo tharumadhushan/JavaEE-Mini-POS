@@ -109,10 +109,10 @@ $("#delete_item").click(function () {
 });
 function callMethod(){
     $("#item-tbl-body>tr").click(function (){
-        let code =$(this).children().eq(0).text();
-        let descr =$(this).children().eq(1).text();
-        let qty =$(this).children().eq(2).text();
-        let unitPrice =$(this).children().eq(3).text();
+        let code =$(this).children().eq(1).text();
+        let descr =$(this).children().eq(2).text();
+        let qty =$(this).children().eq(3).text();
+        let unitPrice =$(this).children().eq(4).text();
 
         $("#item_id").val(code);
         $("#desc").val(descr);
@@ -120,4 +120,3 @@ function callMethod(){
         $("#price").val(unitPrice);
     })
 }
-
